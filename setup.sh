@@ -96,23 +96,17 @@ then
 fi
 
 
-# permissions
-chmod 777 $WORKDIR/install_update.sh
-chmod 777 $WORKDIR/install_golang.sh
-chmod 777 $WORKDIR/install_skywire.sh
-
-
 # install update
 if [ "$INSTALL_UPDATE" = true ]
 then
-	sh $WORKDIR/install_update.sh
+	source $WORKDIR/install_update.sh
 fi
 
 
 # install golang
 if [ "$INSTALL_GOLANG" = true ]
 then
-	sh $WORKDIR/install_golang.sh
+	source $WORKDIR/install_golang.sh
 fi
 
 
@@ -121,7 +115,7 @@ if [ "$INSTALL_SKYWIRE" = true ]
 then
 	if [ "$MANAGER_IP_IS_VALID" = true ]
 	then
-		sh $WORKDIR/install_skywire.sh $MANAGER_IP
+		source $WORKDIR/install_skywire.sh $MANAGER_IP
 	else
 		echo "The provided IP address $MANAGER_IP is not a valid." >&2
 		exit 1
@@ -140,9 +134,9 @@ then
 	fi
         
 	# run setup
-	sh $WORKDIR/install_update.sh
-	sh $WORKDIR/install_golang.sh
-	sh $WORKDIR/install_skywire.sh $MANAGER_IP
+	source $WORKDIR/install_update.sh
+	source $WORKDIR/install_golang.sh
+	source $WORKDIR/install_skywire.sh $MANAGER_IP
     
 	# reboot
 	reboot

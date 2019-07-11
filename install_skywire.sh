@@ -23,14 +23,14 @@ go install ./...
 
 # create job to load skywire at startup
 script=/etc/init.d/start_skywire.sh
-job="@reboot bash $script"
+job="@reboot sleep 60 && bash $script"
 crontab -l > jobs
-line_number=$(grep -n $job jobs | grep -Eo '^[^:]+')
+line_number=$(grep -n "$job" jobs | grep -Eo '^[^:]+')
 if [ -z "$line_number" ]
 then
 	echo "$job" >> jobs # add job
 	crontab jobs # reset crontab
-	rm job
+	rm jobs
 fi
 
 # script to load skywire
@@ -50,3 +50,6 @@ cd $GOPATH/bin
 echo "Access the Skywire Manager in your browser: $MANAGER_IP:8000"
 sleep 10
 EOM
+
+# set execute permissions
+chmod +x $script

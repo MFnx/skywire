@@ -22,10 +22,10 @@ then
 	/bin/cat <<EOM >>.bashrc
 
 # golang preferences
-export GOROOT=$var_goroot
-export GOPATH=$var_gopath
-export GOBIN=$var_gobin
-export PATH=$PATH:$var_gobin
+export GOROOT=$GOROOT
+export GOPATH=$GOPATH
+export GOBIN=$GOBIN
+export PATH=$PATH:$GOBIN
 EOM
 
 fi
