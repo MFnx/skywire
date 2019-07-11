@@ -15,17 +15,17 @@ mv go /usr/local/go
 # add golang preferences
 if [ ! "$(grep "# golang preferences" .bashrc)" ]
 then
-	export GOROOT=/usr/local/go
-	export GOPATH=$HOME/go
-	export GOBIN=$GOPATH/bin
+	GOROOT=/usr/local/go
+	GOPATH=$HOME/go
+	GOBIN=$GOPATH/bin
 	
 	/bin/cat <<EOM >>.bashrc
 
 # golang preferences
-export GOROOT=$var_goroot
-export GOPATH=$var_gopath
-export GOBIN=$var_gobin
-export PATH=$PATH:$var_gobin
+export GOROOT=$GOROOT
+export GOPATH=$GOPATH
+export GOBIN=$GOBIN
+export PATH=$PATH:$GOBIN
 EOM
 
 fi
